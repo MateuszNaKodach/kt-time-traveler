@@ -7,14 +7,17 @@ import java.time.LocalTime
 
 interface TimeProvider {
 
-    fun getCurrentLocalTime(): LocalTime
+    val localTime: LocalTime
 
-    fun getCurrentLocalDate(): LocalDate
+    val localDate: LocalDate
 
-    fun getCurrentInstant(): Instant
+    val instant: Instant
 
-    fun getCurrentLocalDateTime(): LocalDateTime = LocalDateTime.of(getCurrentLocalDate(), getCurrentLocalTime())
+    val localDateTime: LocalDateTime
+        get() = LocalDateTime.of(localDate, localTime)
 
-    fun getStartOfCurrentDay(): LocalDateTime = getCurrentLocalDate().atStartOfDay()
+    val timeAtStartOfCurrentDay: LocalDateTime
+        get() = localDate.atStartOfDay()
+
 
 }

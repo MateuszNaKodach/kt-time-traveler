@@ -1,4 +1,9 @@
 package com.github.nowakprojects.kttimetraveler.core
 
-internal class ClockTimeProviderSpecification {
-}
+import org.spekframework.spek2.Spek
+
+internal class ClockTimeProviderSpecification : Spek({
+
+
+
+})

@@ -4,9 +4,9 @@ package com.github.nowakprojects.kttimetraveler.test
 import com.github.nowakprojects.kttimetraveler.core.*
 import java.time.*
 
-class TestClockTimeProvider private constructor(private var clock: Clock) : ClockTimeProvider(clock), TimeProvider {
+class TestClockTimeProvider private constructor(private var clock: Clock) : CurrentTimeProvider(clock), TimeProvider {
 
-    fun setCurrentTimeTo(localTime: LocalTime) {
+    fun timeTravelTo(localTime: LocalTime) {
         clock = Clock.fixed(currentInstantWithTime(localTime, clock.zone), clock.zone)
     }
 
@@ -18,7 +18,7 @@ class TestClockTimeProvider private constructor(private var clock: Clock) : Cloc
             return TestClockTimeProvider(Clock.fixed(currentInstantWithTime(localTime, zoneId), zoneId))
         }
 
-        private fun currentInstantWithTime(localTime: LocalTime, zoneId: ZoneId): Instant {
+        fun currentInstantWithTime(localTime: LocalTime, zoneId: ZoneId): Instant {
             return ZonedDateTime.of(LocalDate.now().atTime(localTime), zoneId).toInstant()
         }
     }
