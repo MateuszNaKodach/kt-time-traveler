@@ -18,6 +18,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":kt-time-traveler-core"))
     implementation(kotlin("stdlib-jdk8"))
     testCompile("org.spekframework.spek2", "spek-dsl-jvm", Versions.SPEK)
     testRuntime("org.spekframework.spek2", "spek-runner-junit5", Versions.SPEK)

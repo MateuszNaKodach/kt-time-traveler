@@ -2,6 +2,7 @@ package com.github.nowakprojects.kttimetraveler.core
 
 import java.time.Clock
 import java.time.Instant
+import java.time.ZoneId
 
 var MutableClock.instant: Instant
     get() = instant()
@@ -12,5 +13,5 @@ fun Clock.toMutable() = when (this) {
     else -> MutableClock(instant(), zone)
 }
 
-
-//TODO: Creating clock with given time
+fun clockFixedAt(instant: Instant): Clock = Clock.fixed(instant, ZoneId.systemDefault())
+fun clockFixedNow(zoneId: ZoneId = ZoneId.systemDefault()): Clock = Clock.fixed(Instant.now(), zoneId)
