@@ -4,10 +4,12 @@ package com.github.nowakprojects.kttimetraveler.test
 import com.github.nowakprojects.kttimetraveler.core.*
 import java.time.*
 
-class TestClockTimeProvider private constructor(private var clock: Clock) : CurrentTimeProvider(clock), TimeProvider {
+open class TestClockTimeProvider private constructor(clock: Clock) : TimeProvider by ClockTimeProvider(clock) {
+
+    private var _clock: MutableClock = clock.toMutable()
 
     fun timeTravelTo(localTime: LocalTime) {
-        clock = Clock.fixed(currentInstantWithTime(localTime, clock.zone), clock.zone)
+        _clock = _clock.apply { atInstant(LocalDate.now(_clock).atTime(localTime).toInstant(_clock.zone)) }
     }
 
     companion object {

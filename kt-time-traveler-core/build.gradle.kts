@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 object Versions {
     const val ASSERTK = "0.17"
+    const val MOCK_CLOCK = "1.0"
     const val SPEK = "2.0.5"
 }
 
@@ -19,6 +20,8 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    implementation("com.statemachinesystems", "mock-clock", Versions.MOCK_CLOCK)
+
     testCompile("org.spekframework.spek2", "spek-dsl-jvm", Versions.SPEK)
     testRuntime("org.spekframework.spek2", "spek-runner-junit5", Versions.SPEK)
     testCompile("com.willowtreeapps.assertk", "assertk-jvm", Versions.ASSERTK)

@@ -2,7 +2,7 @@ package com.github.nowakprojects.kttimetraveler.test
 
 import java.time.LocalTime
 
-interface TimeManipulator {
+interface TestTimeTraveler {
 
     fun timeTravelTo(localTime: LocalTime)
 }
