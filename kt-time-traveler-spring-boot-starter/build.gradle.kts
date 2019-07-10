@@ -7,10 +7,9 @@ object Versions {
 }
 
 plugins {
-    kotlin("jvm") version "1.3.41"
-    kotlin("plugin.spring") version "1.3.41"
-    id("org.springframework.boot") version "2.1.6.RELEASE"
-    id("io.spring.dependency-management") version "1.0.7.RELEASE"
+    kotlin("jvm")
+    kotlin("plugin.spring")
+    id("io.spring.dependency-management")
 }
 
 group = "com.github.nowakprojects"
@@ -28,14 +27,14 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-autoconfigure:${Versions.SPRING_BOOT}")
     implementation(project(":kt-time-traveler-core"))
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
 
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:${Versions.SPRING_BOOT}")
 
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.springframework.boot:spring-boot-starter-test:${Versions.SPRING_BOOT}")
     testCompile("org.spekframework.spek2", "spek-dsl-jvm", Versions.SPEK)
     testRuntime("org.spekframework.spek2", "spek-runner-junit5", Versions.SPEK)
     testCompile("com.willowtreeapps.assertk", "assertk-jvm", Versions.ASSERTK)

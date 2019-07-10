@@ -7,7 +7,7 @@ object Versions {
 
 plugins {
     java
-    kotlin("jvm") version "1.3.41"
+    kotlin("jvm")
 }
 
 group = "com.github.nowakprojects"
