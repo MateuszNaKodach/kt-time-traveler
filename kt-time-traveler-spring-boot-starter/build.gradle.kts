@@ -1,6 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import io.spring.gradle.dependencymanagement.DependencyManagementExtension
-
 
 object Versions {
     const val ASSERTK = "0.17"
@@ -9,7 +7,6 @@ object Versions {
 }
 
 plugins {
-    java
     kotlin("jvm") version "1.3.41"
     kotlin("plugin.spring") version "1.2.71"
     id("org.springframework.boot") version "2.1.6.RELEASE"
@@ -18,21 +15,23 @@ plugins {
 
 group = "com.github.nowakprojects"
 version = "1.0.0-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
+}
 
 repositories {
     mavenCentral()
-}
-
-configure<DependencyManagementExtension> {
-    imports {
-        mavenBom("org.springframework.boot:spring-boot-starter-parent:${Versions.SPRING_BOOT}")
-    }
 }
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation(project(":kt-time-traveler-core"))
     implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("reflect"))
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
@@ -42,9 +41,9 @@ dependencies {
     testCompile("com.willowtreeapps.assertk", "assertk-jvm", Versions.ASSERTK)
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-}
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = "1.8"
+    }
 }
