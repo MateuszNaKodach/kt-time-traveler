@@ -24,6 +24,9 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://dl.bintray.com/spekframework/spek")
+    }
 }
 
 dependencies {

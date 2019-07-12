@@ -16,6 +16,9 @@ version = "1.0.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://dl.bintray.com/spekframework/spek")
+    }
 }
 
 dependencies {
