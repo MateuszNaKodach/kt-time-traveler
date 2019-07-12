@@ -6,7 +6,10 @@ import java.time.temporal.TemporalAmount
 class MutableClock(private var instant: Instant, private val zone: ZoneId = ZoneId.systemDefault()) : Clock() {
 
     companion object {
+        @JvmStatic
         fun from(clock: Clock): MutableClock = clock.toMutable()
+
+        @JvmStatic
         fun withTime(instant: Instant): MutableClock = MutableClock(instant)
     }
 
