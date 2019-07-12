@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "com.github.nowakprojects"
-version = "1.0.0-SNAPSHOT"
+version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
