@@ -18,4 +18,4 @@ fun LocalTime.today() =
         todayAtZone(ZoneId.systemDefault())
 
 fun LocalTime.todayAtZone(zoneId: ZoneId) =
-        ZonedDateTime.of(LocalDate.now().atTime(this), ZoneId.systemDefault())
+        ZonedDateTime.of(LocalDate.now().atTime(this), zoneId)

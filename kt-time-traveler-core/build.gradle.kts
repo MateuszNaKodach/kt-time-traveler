@@ -8,7 +8,7 @@ object Versions {
 
 plugins {
     java
-    kotlin("jvm") version "1.3.41"
+    kotlin("jvm")
 }
 
 group = "com.github.nowakprojects"
@@ -16,6 +16,9 @@ version = "1.0.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://dl.bintray.com/spekframework/spek")
+    }
 }
 
 dependencies {
