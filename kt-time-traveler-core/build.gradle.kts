@@ -9,6 +9,7 @@ object Versions {
 plugins {
     java
     kotlin("jvm")
+    id("maven")
 }
 
 group = "com.github.nowakprojects"
@@ -34,6 +35,20 @@ dependencies {
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_1_8
 }
+
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+/*
+TODO: Change to sonatype maven repository publishing
+tasks.named<Upload>("uploadArchives") {
+    repositories.withGroovyBuilder {
+        "mavenDeployer" {
+            "repository"("url" to "nexUrl") {
+                "authentication"("userName" to "userName", "password" to "password")
+            }
+        }
+    }
+}
+ */

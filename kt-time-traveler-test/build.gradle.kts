@@ -8,6 +8,7 @@ object Versions {
 plugins {
     java
     kotlin("jvm")
+    id("maven")
 }
 
 group = "com.github.nowakprojects"
