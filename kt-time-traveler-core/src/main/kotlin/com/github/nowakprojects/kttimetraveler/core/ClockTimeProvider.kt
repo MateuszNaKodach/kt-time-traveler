@@ -1,9 +1,11 @@
 package com.github.nowakprojects.kttimetraveler.core
 
-import java.time.*
-import java.util.function.Supplier
+import java.time.Clock
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalTime
 
-class ClockTimeProvider(private val clock: Clock) : TimeProvider, Supplier<Instant> {
+class ClockTimeProvider(private val clock: Clock) : TimeProvider {
 
     override val localTime: LocalTime
         get() = LocalTime.now(clock)
@@ -13,7 +15,5 @@ class ClockTimeProvider(private val clock: Clock) : TimeProvider, Supplier<Insta
 
     override val instant: Instant
         get() = clock.instant()
-
-    override fun get(): Instant  = instant
 
 }

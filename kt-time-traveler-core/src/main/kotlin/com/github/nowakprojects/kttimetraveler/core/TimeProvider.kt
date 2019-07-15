@@ -4,8 +4,9 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.util.function.Supplier
 
-interface TimeProvider {
+interface TimeProvider : Supplier<Instant> {
 
     val localTime: LocalTime
 
@@ -19,5 +20,6 @@ interface TimeProvider {
     val timeAtStartOfCurrentDay: LocalDateTime
         get() = localDate.atStartOfDay()
 
+    override fun get(): Instant = instant
 
 }
