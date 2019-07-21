@@ -2,7 +2,7 @@ package com.github.nowakprojects.kttimetraveler.core
 
 import java.time.*
 
-class ClockTimeProvider(private val clock: Clock) : TimeProvider {
+open class ClockTimeProvider(protected var clock: Clock) : TimeProvider {
 
     override val localTime: LocalTime
         get() = LocalTime.now(clock)
@@ -12,4 +12,7 @@ class ClockTimeProvider(private val clock: Clock) : TimeProvider {
 
     override val instant: Instant
         get() = clock.instant()
+
+    override val zone: ZoneId
+        get() = clock.zone
 }
