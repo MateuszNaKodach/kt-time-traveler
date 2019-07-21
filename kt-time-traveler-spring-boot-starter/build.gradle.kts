@@ -10,6 +10,7 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.spring")
     id("io.spring.dependency-management")
+    id("maven")
 }
 
 group = "com.github.nowakprojects"

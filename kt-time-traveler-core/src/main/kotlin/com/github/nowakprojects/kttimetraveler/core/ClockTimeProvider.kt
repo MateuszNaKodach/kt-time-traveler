@@ -1,6 +1,9 @@
 package com.github.nowakprojects.kttimetraveler.core
 
-import java.time.*
+import java.time.Clock
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalTime
 
 open class ClockTimeProvider(protected var clock: Clock) : TimeProvider {
 
