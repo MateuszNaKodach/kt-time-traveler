@@ -1,9 +1,6 @@
 package com.github.nowakprojects.kttimetraveler.core
 
-import java.time.Instant
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
+import java.time.*
 import java.util.function.Supplier
 
 interface TimeProvider : Supplier<Instant> {
@@ -19,6 +16,8 @@ interface TimeProvider : Supplier<Instant> {
 
     val timeAtStartOfCurrentDay: LocalDateTime
         get() = localDate.atStartOfDay()
+
+    val zone: ZoneId
 
     override fun get(): Instant = instant
 
