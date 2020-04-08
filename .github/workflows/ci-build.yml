@@ -1,0 +1,58 @@
+name: "Build kt-time-traveler libraries"
+
+on: [push]
+
+jobs:
+  build-core:
+    env:
+      working-directory: ./kt-time-traveler-core
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Run tests with Gradle
+      run: ./gradlew test
+      working-directory: ${{env.working-directory))
+    - name: Build with Gradle
+      run: ./gradlew build -x test
+      working-directory: ${{env.working-directory))
+
+  build-spring-boot-starter:
+    env:
+      working-directory: ./kt-time-traveler-spring-boot-starter
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Run tests with Gradle
+        run: ./gradlew test
+        working-directory: ${{env.working-directory))
+      - name: Build with Gradle
+        run: ./gradlew build -x test
+        working-directory: ${{env.working-directory))
+
+  build-test:
+    env:
+      working-directory: ./kt-time-traveler-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Run tests with Gradle
+        run: ./gradlew test
+        working-directory: ${{env.working-directory))
+      - name: Build with Gradle
+        run: ./gradlew build -x test
+        working-directory: ${{env.working-directory))
