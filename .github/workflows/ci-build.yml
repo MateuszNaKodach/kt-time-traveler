@@ -16,10 +16,10 @@ jobs:
         java-version: 1.8
     - name: Run tests with Gradle
       run: ./gradlew test
-      working-directory: ${{env.working-directory))
+      working-directory: ${{env.working-directory}}
     - name: Build with Gradle
       run: ./gradlew build -x test
-      working-directory: ${{env.working-directory))
+      working-directory: ${{env.working-directory}}
 
   build-spring-boot-starter:
     env:
@@ -34,10 +34,10 @@ jobs:
           java-version: 1.8
       - name: Run tests with Gradle
         run: ./gradlew test
-        working-directory: ${{env.working-directory))
+        working-directory: ${{env.working-directory}}
       - name: Build with Gradle
         run: ./gradlew build -x test
-        working-directory: ${{env.working-directory))
+        working-directory: ${{env.working-directory}}
 
   build-test:
     env:
@@ -52,7 +52,7 @@ jobs:
           java-version: 1.8
       - name: Run tests with Gradle
         run: ./gradlew test
-        working-directory: ${{env.working-directory))
+        working-directory: ${{env.working-directory}}
       - name: Build with Gradle
         run: ./gradlew build -x test
-        working-directory: ${{env.working-directory))
+        working-directory: ${{env.working-directory}}
