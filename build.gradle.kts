@@ -4,3 +4,8 @@ plugins {
     id("io.spring.dependency-management") version "1.0.7.RELEASE"
     id("maven")
 }
+
+allprojects {
+    group = "com.github.nowakprojects"
+    version = "0.1.0"
+}
