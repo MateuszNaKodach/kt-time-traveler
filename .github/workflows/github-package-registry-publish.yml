@@ -1,0 +1,53 @@
+name: Publish packages to GitHub Packages Registry
+on:
+  push:
+    branches:
+      - master
+jobs:
+  publish-core:
+    env:
+      working-directory: ./kt-time-traveler-core
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Publish package
+        run: ./gradlew publish
+        working-directory: ${{env.working-directory}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-spring-boot-starter:
+    env:
+      working-directory: ./kt-time-traveler-spring-boot-starter
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Publish package
+        run: ./gradlew publish
+        working-directory: ${{env.working-directory}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-test:
+    env:
+      working-directory: ./kt-time-traveler-test
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Publish package
+        run: ./gradlew publish
+        working-directory: ${{env.working-directory}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
