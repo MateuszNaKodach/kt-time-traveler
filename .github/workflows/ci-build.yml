@@ -15,15 +15,11 @@ jobs:
       with:
         java-version: 1.8
     - name: Run tests with Gradle
-      run: ./gradlew test
-      working-directory: ${{env.working-directory}}
+      run: ./gradlew :kt-time-traveler-core:test
     - name: Build with Gradle
-      run: ./gradlew build -x test
-      working-directory: ${{env.working-directory}}
+      run: ./gradlew :kt-time-traveler-core:build -x test
 
   build-spring-boot-starter:
-    env:
-      working-directory: ./kt-time-traveler-spring-boot-starter
     runs-on: ubuntu-latest
 
     steps:
@@ -33,15 +29,11 @@ jobs:
         with:
           java-version: 1.8
       - name: Run tests with Gradle
-        run: ./gradlew test
-        working-directory: ${{env.working-directory}}
+        run: ./gradlew :kt-time-traveler-spring-boot-starter:test
       - name: Build with Gradle
-        run: ./gradlew build -x test
-        working-directory: ${{env.working-directory}}
+        run: ./gradlew :kt-time-traveler-spring-boot-starter:build -x test
 
   build-test:
-    env:
-      working-directory: ./kt-time-traveler-test
     runs-on: ubuntu-latest
 
     steps:
@@ -51,8 +43,6 @@ jobs:
         with:
           java-version: 1.8
       - name: Run tests with Gradle
-        run: ./gradlew test
-        working-directory: ${{env.working-directory}}
+        run: ./gradlew :kt-time-traveler-test:test
       - name: Build with Gradle
-        run: ./gradlew build -x test
-        working-directory: ${{env.working-directory}}
+        run: ./gradlew :kt-time-traveler-test:build -x test
