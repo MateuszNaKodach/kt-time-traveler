@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 object Versions {
-    const val ASSERTK = "0.17"
-    const val SPEK = "2.0.5"
+    const val ASSERTK = "0.22"
+    const val SPEK = "2.0.9"
 }
 
 plugins {
@@ -22,9 +22,9 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
-    testCompile("org.spekframework.spek2", "spek-dsl-jvm", Versions.SPEK)
-    testRuntime("org.spekframework.spek2", "spek-runner-junit5", Versions.SPEK)
-    testCompile("com.willowtreeapps.assertk", "assertk-jvm", Versions.ASSERTK)
+    testImplementation("org.spekframework.spek2", "spek-dsl-jvm", Versions.SPEK)
+    testRuntimeOnly("org.spekframework.spek2", "spek-runner-junit5", Versions.SPEK)
+    testImplementation("com.willowtreeapps.assertk", "assertk-jvm", Versions.ASSERTK)
 
 }
 
