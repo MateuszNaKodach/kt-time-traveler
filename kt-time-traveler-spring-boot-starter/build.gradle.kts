@@ -11,6 +11,7 @@ plugins {
     kotlin("plugin.spring")
     id("io.spring.dependency-management")
     id("maven")
+    `maven-publish`
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
@@ -48,3 +49,32 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/nowakprojects/kttimetraveler")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        register("gpr", MavenPublication::class) {
+            from(components["java"])
+        }
+    }
+}
+
+tasks.named<Upload>("uploadArchives") {
+    repositories.withGroovyBuilder {
+        "mavenDeployer" {
+            "repository"("url" to "https://maven.pkg.github.com/nowakprojects/kttimetraveler") {
+                "authentication"("userName" to (project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")), "password" to (project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")))
+            }
+        }
+    }
+}
+

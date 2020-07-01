@@ -7,5 +7,5 @@ plugins {
 
 allprojects {
     group = "com.github.nowakprojects"
-    version = "0.1.0"
+    version = "0.1.1"
 }
