@@ -21,7 +21,7 @@ internal class MutableClockSpecification : Spek({
 
             Given("clock time is $START_HOUR:$START_MINUTE") {}
 
-            When("clock is advance by 1 minute") {
+            When("clock is advanced by 1 minute") {
                 clock.instant += Duration.ofMinutes(1)
             }
 
@@ -35,7 +35,7 @@ internal class MutableClockSpecification : Spek({
 
             Given("clock time is $START_HOUR:$START_MINUTE") {}
 
-            When("clock is back by 1 minute") {
+            When("clock is backed by 1 minute") {
                 clock.instant -= Duration.ofMinutes(1)
             }
 
