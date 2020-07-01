@@ -13,9 +13,6 @@ plugins {
     id("maven")
 }
 
-group = "com.github.nowakprojects"
-version = "0.0.3"
-
 repositories {
     mavenCentral()
     maven {

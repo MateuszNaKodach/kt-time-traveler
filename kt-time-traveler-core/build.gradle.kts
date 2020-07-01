@@ -12,9 +12,6 @@ plugins {
     `maven-publish`
 }
 
-group = "com.github.nowakprojects"
-version = "0.0.4"
-
 repositories {
     mavenCentral()
     maven {
