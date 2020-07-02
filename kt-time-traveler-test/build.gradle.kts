@@ -14,13 +14,6 @@ plugins {
     `maven-publish`
 }
 
-repositories {
-    mavenCentral()
-    maven {
-        url = uri("https://dl.bintray.com/spekframework/spek")
-    }
-}
-
 dependencies {
     implementation(project(":kt-time-traveler-core"))
     implementation(kotlin("stdlib-jdk8"))

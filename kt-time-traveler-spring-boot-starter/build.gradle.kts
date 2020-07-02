@@ -22,13 +22,6 @@ configurations {
     }
 }
 
-repositories {
-    mavenCentral()
-    maven {
-        url = uri("https://dl.bintray.com/spekframework/spek")
-    }
-}
-
 dependencies {
     implementation("org.springframework.boot:spring-boot-autoconfigure:${Versions.SPRING_BOOT}")
     implementation(project(":kt-time-traveler-core"))
