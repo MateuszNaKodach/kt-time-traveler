@@ -8,4 +8,11 @@ plugins {
 allprojects {
     group = "com.github.nowakprojects"
     version = "0.1.2"
+
+    repositories {
+        mavenCentral()
+        maven {
+            url = uri("https://dl.bintray.com/spekframework/spek")
+        }
+    }
 }
