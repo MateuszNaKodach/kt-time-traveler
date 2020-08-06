@@ -5,8 +5,6 @@ on:
       - master
 jobs:
   publish-core:
-    env:
-      working-directory: ./kt-time-traveler-core
 
     runs-on: ubuntu-latest
     steps:
@@ -15,14 +13,11 @@ jobs:
         with:
           java-version: 1.8
       - name: Publish package
-        run: ./gradlew publish
-        working-directory: ${{env.working-directory}}
+        run: ./gradlew :kt-time-traveler-core:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish-spring-boot-starter:
-    env:
-      working-directory: ./kt-time-traveler-spring-boot-starter
 
     runs-on: ubuntu-latest
     steps:
@@ -31,14 +26,11 @@ jobs:
         with:
           java-version: 1.8
       - name: Publish package
-        run: ./gradlew publish
-        working-directory: ${{env.working-directory}}
+        run: ./gradlew :kt-time-traveler-spring-boot-starter:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish-test:
-    env:
-      working-directory: ./kt-time-traveler-test
 
     runs-on: ubuntu-latest
     steps:
@@ -47,7 +39,6 @@ jobs:
         with:
           java-version: 1.8
       - name: Publish package
-        run: ./gradlew publish
-        working-directory: ${{env.working-directory}}
+        run: ./gradlew :kt-time-traveler-test:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

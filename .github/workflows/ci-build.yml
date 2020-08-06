@@ -4,8 +4,6 @@ on: [push]
 
 jobs:
   build-core:
-    env:
-      working-directory: ./kt-time-traveler-core
     runs-on: ubuntu-latest
 
     steps:
