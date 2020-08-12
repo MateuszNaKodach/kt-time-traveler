@@ -1,6 +1,10 @@
 name: "Build kt-time-traveler libraries"
 
-on: [push]
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
 
 jobs:
   build-core:

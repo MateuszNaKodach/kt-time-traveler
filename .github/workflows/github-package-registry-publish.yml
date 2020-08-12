@@ -3,6 +3,13 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'kt-time-traveler-core/**'
+      - 'kt-time-traveler-spring-boot-starter/**'
+      - 'kt-time-traveler-spring-boot-test/**'
+      - '**.gradle.kts'
+      - '!.github/**'
+      - '!README.md'
 jobs:
   publish-core:
 
