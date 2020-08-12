@@ -16,8 +16,13 @@ This is also applicable for time in our applications.
 
 ## Configuration
 
-
 ### With Spring Boot Starter
+
+Configure time in your application using application.yaml file.
+
+```
+TODO
+```
 
 
 ### Without Spring Boot
