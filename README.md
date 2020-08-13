@@ -1,4 +1,4 @@
-# KtTimeTraveler
+# kt-time-traveler
 
 Time injection library for JVM written in Kotlin. Works with Java as well.
 One source of true time in whole application. It's also provides mutable clock for testing.
