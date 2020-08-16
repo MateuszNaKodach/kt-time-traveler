@@ -6,8 +6,8 @@ plugins {
 }
 
 allprojects {
-    group = "com.github.nowakprojects"
-    version = "0.1.3"
+    group = "pl.zycienakodach"
+    version = "0.1.4"
 
     repositories {
         mavenCentral()
