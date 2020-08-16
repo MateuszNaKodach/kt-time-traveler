@@ -47,7 +47,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/nowakprojects/kttimetraveler")
+            url = uri("https://maven.pkg.github.com/nowakprojects/kt-time-traveler")
             credentials {
                 username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
@@ -64,7 +64,7 @@ publishing {
 tasks.named<Upload>("uploadArchives") {
     repositories.withGroovyBuilder {
         "mavenDeployer" {
-            "repository"("url" to "https://maven.pkg.github.com/nowakprojects/kttimetraveler") {
+            "repository"("url" to "https://maven.pkg.github.com/nowakprojects/kt-time-traveler") {
                 "authentication"("userName" to (project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")), "password" to (project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")))
             }
         }
