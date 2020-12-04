@@ -89,6 +89,9 @@ publishing {
 }
 
 signing {
+    val pgpSigningKey = System.getenv("PGP_SIGNING_KEY")
+    val pgpSigningPassword = System.getenv("PGP_SIGNING_PASSWORD")
+    useInMemoryPgpKeys(pgpSigningKey, pgpSigningPassword)
     sign(publishing.publications["mavenJava"])
 }
 
