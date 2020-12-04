@@ -61,7 +61,7 @@ publishing {
             artifactId = "kt-time-traveler-core"
             from(components["java"])
             pom {
-                name.set("Kt Time Traveler")
+                name.set("Kt Time Traveler - Core")
                 description.set("Single source of truth for the time in your application.")
                 url.set("https://github.com/nowakprojects/kt-time-traveler")
                 licenses {
@@ -89,9 +89,10 @@ publishing {
 }
 
 signing {
+    val pgpSigningKeyId = System.getenv("PGP_SIGNING_KEY_ID")
     val pgpSigningKey = System.getenv("PGP_SIGNING_KEY")
     val pgpSigningPassword = System.getenv("PGP_SIGNING_PASSWORD")
-    useInMemoryPgpKeys(pgpSigningKey, pgpSigningPassword)
+    useInMemoryPgpKeys(pgpSigningKeyId, pgpSigningKey, pgpSigningPassword)
     sign(publishing.publications["mavenJava"])
 }
 

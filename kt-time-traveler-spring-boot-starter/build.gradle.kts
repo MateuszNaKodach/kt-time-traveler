@@ -12,6 +12,7 @@ plugins {
     id("io.spring.dependency-management")
     id("maven")
     `maven-publish`
+    signing
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
@@ -43,6 +44,11 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 publishing {
     repositories {
         maven {
@@ -53,11 +59,60 @@ publishing {
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
             }
         }
+        maven {
+            name = "MavenCentral"
+            val releasesStagingRepoUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
+            val snapshotsRepoUrl = uri("https://oss.sonatype.org/content/repositories/snapshots")
+            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesStagingRepoUrl
+            credentials {
+                username = System.getenv("MAVEN_CENTRAL_USERNAME")
+                password = System.getenv("MAVEN_CENTRAL_PASSWORD")
+            }
+        }
     }
     publications {
-        register("gpr", MavenPublication::class) {
+        create<MavenPublication>("mavenJava") {
+            artifactId = "kt-time-traveler-spring-boot-starter"
             from(components["java"])
+            pom {
+                name.set("Kt Time Traveler - Spring Boot Starter")
+                description.set("Single source of truth for the time in your application.")
+                url.set("https://github.com/nowakprojects/kt-time-traveler")
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("nowakprojects")
+                        name.set("Mateusz Nowak")
+                        email.set("kontakt.mateusznowak@gmail.com")
+                        url.set("https://zycienakodach.pl")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:git://github.com/nowakprojects/kt-time-traveler.git")
+                    developerConnection.set("scm:git:ssh://github.com/nowakprojects/kt-time-traveler.git")
+                    url.set("https://github.com/nowakprojects/kt-time-traveler/")
+                }
+            }
         }
+    }
+}
+
+signing {
+    val pgpSigningKeyId = System.getenv("PGP_SIGNING_KEY_ID")
+    val pgpSigningKey = System.getenv("PGP_SIGNING_KEY")
+    val pgpSigningPassword = System.getenv("PGP_SIGNING_PASSWORD")
+    useInMemoryPgpKeys(pgpSigningKeyId, pgpSigningKey, pgpSigningPassword)
+    sign(publishing.publications["mavenJava"])
+}
+
+tasks.javadoc {
+    if (JavaVersion.current().isJava9Compatible) {
+        (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
     }
 }
 
