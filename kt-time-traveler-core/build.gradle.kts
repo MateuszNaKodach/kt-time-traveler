@@ -55,6 +55,16 @@ publishing {
                 password = System.getenv("MAVEN_CENTRAL_PASSWORD")
             }
         }
+        maven {
+            name = "OssJFrog"
+            val releasesRepoUrl = uri("https://oss.jfrog.org/artifactory/libs-release")
+            val snapshotsRepoUrl = uri("https://oss.jfrog.org/artifactory/libs-snapshot")
+            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+            credentials {
+                username = System.getenv("OSS_JFROG_USERNAME")
+                password = System.getenv("OSS_JFROG_PASSWORD")
+            }
+        }
     }
     publications {
         create<MavenPublication>("mavenJava") {
