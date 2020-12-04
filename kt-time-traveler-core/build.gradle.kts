@@ -10,6 +10,7 @@ plugins {
     kotlin("jvm")
     id("maven")
     `maven-publish`
+    signing
 }
 
 dependencies {
@@ -29,6 +30,11 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 publishing {
     repositories {
         maven {
@@ -39,11 +45,56 @@ publishing {
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
             }
         }
+        maven {
+            name = "MavenCentral"
+            val releasesStagingRepoUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
+            val snapshotsRepoUrl = uri("https://oss.sonatype.org/content/repositories/snapshots")
+            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesStagingRepoUrl
+            credentials {
+                username = System.getenv("MAVEN_CENTRAL_USERNAME")
+                password = System.getenv("MAVEN_CENTRAL_PASSWORD")
+            }
+        }
     }
     publications {
-        register("gpr", MavenPublication::class) {
+        create<MavenPublication>("mavenJava") {
+            artifactId = "kt-time-traveler-core"
             from(components["java"])
+            pom {
+                name.set("Kt Time Traveler")
+                description.set("Single source of truth for the time in your application.")
+                url.set("https://github.com/nowakprojects/kt-time-traveler")
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("nowakprojects")
+                        name.set("Mateusz Nowak")
+                        email.set("kontakt.mateusznowak@gmail.com")
+                        url.set("https://zycienakodach.pl")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:git://github.com/nowakprojects/kt-time-traveler.git")
+                    developerConnection.set("scm:git:ssh://github.com/nowakprojects/kt-time-traveler.git")
+                    url.set("https://github.com/nowakprojects/kt-time-traveler/")
+                }
+            }
         }
+    }
+}
+
+signing {
+    sign(publishing.publications["mavenJava"])
+}
+
+tasks.javadoc {
+    if (JavaVersion.current().isJava9Compatible) {
+        (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
     }
 }
 
