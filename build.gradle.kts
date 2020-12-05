@@ -7,7 +7,7 @@ plugins {
 
 allprojects {
     group = "pl.zycienakodach"
-    version = "0.1.12"
+    version = "0.1.13"
 
     repositories {
         mavenCentral()

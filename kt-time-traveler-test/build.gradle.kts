@@ -81,6 +81,8 @@ publishing {
                         name.set("Mateusz Nowak")
                         email.set("kontakt.mateusznowak@gmail.com")
                         url.set("https://zycienakodach.pl")
+                        organization.set("Życie na kodach")
+                        organizationUrl.set("https://zycienakodach.pl")
                     }
                 }
                 scm {
