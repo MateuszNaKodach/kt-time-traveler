@@ -16,27 +16,27 @@ class CurrentTimeProperties {
     /**
      * Indicate if time should be fixed during application run.
      */
-    private var fixed: Boolean = false
+    var fixed: Boolean = false
 
     /**
      * Application time zone, by default is system zone.
      * Valid value for Poland is 'Europe/Warsaw'.
      */
-    private var zone: ZoneId = ZoneId.systemDefault()
+    var zone: ZoneId = ZoneId.systemDefault()
 
     /**
      * Application date, by default is system date.
      * It should be passed in ISO-8601 (yyyy-MM-dd) format, for example 2019-04-24.
      * If not set current system date is used.
      */
-    private var date: LocalDate = LocalDate.now(zone)
+    var date: LocalDate = LocalDate.now(ZoneId.from(ZoneOffset.UTC))
 
     /**
      * Application time, by default is system time.
      * Example values: '"10:15"' or '"10:15:30"' or '"10:15:30.999"'
      * If not set current system time is used.
      */
-    private var time: LocalTime = LocalTime.now(zone)
+    var time: LocalTime = LocalTime.now(ZoneId.from(ZoneOffset.UTC))
 
 
     fun getClock(): Clock =
