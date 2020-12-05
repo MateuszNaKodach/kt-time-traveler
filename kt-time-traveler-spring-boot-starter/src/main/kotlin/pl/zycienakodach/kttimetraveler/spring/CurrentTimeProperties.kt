@@ -39,7 +39,7 @@ class CurrentTimeProperties {
     private var time: LocalTime = LocalTime.now(zone)
 
 
-    internal fun getClock(): Clock =
+    fun getClock(): Clock =
             when (fixed) {
                 true -> Clock.fixed(LocalDateTime.of(date, time).atZone(zone).toInstant(), zone)
                 false -> Clock.system(zone)
